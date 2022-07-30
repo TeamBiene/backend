@@ -4,7 +4,7 @@ authorization header -> for all calls
 
 ## Controllers
 
-### Colony - [X]
+### Colony - [x]
 
 | Method | URL                   | Description                          |
 | ------ | --------------------- | ------------------------------------ |
@@ -14,13 +14,13 @@ authorization header -> for all calls
 | ------ | ------- | ---------------- |
 | POST   | /colony | Post new colony. |
 
-### Map - [X]
+### Map - [x]
 
 | Method | URL                                                                  | Description                                    |
 | ------ | -------------------------------------------------------------------- | ---------------------------------------------- |
 | GET    | /map?startLatitude=0&startLongitude=0&stopLatitude=0&stopLongitude=0 | Returns all colonies in the coordinates range. |
 
-### User - [X]
+### User - [x]
 
 | Method | URL            | Description         |
 | ------ | -------------- | ------------------- |
@@ -30,7 +30,7 @@ authorization header -> for all calls
 | ------ | --------------------------------- | ----------------- |
 | GET    | /user?association={associationId} | Return all users. |
 
-### News - [ ]
+### News - [x]
 
 | Method | URL                               | Description      |
 | ------ | --------------------------------- | ---------------- |
@@ -54,7 +54,7 @@ authorization header -> for all calls
 | ------ | -------- | ----------------------------------- |
 | GET    | /account | Return infos about current account. |
 
-### Chat - [X]
+### Chat - [x]
 
 | Method | URL                                                | Description                |
 | ------ | -------------------------------------------------- | -------------------------- |
@@ -64,7 +64,7 @@ authorization header -> for all calls
 | ------ | ---------------------------- | --------------------- |
 | POST   | /chat/{userId}?from={userId} | Send message to user. |
 
-### Association - [X]
+### Association - [x]
 
 | Method | URL          | Description               |
 | ------ | ------------ | ------------------------- |
