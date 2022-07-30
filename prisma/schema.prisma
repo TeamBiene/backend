@@ -11,17 +11,19 @@ datasource db {
 }
 
 model User {
-  id                String              @id @default(cuid())
-  name              String
-  email             String
-  passwordHash      String
-  profilePhoto      String?
-  createdAt         DateTime            @default(now())
-  updatedAt         DateTime            @default(now())
-  beekeeper         Beekeeper?
-  farmer            Farmer?
-  prostedNews       News[]
-  AssociationMember AssociationMember[]
+  id                 String              @id @default(cuid())
+  name               String
+  email              String
+  passwordHash       String
+  profilePhoto       String?
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @default(now())
+  beekeeper          Beekeeper?
+  farmer             Farmer?
+  prostedNews        News[]
+  associationMembers AssociationMember[]
+  events             Event[]
+  publicComments     PublicComment[]
 }
 
 model Beekeeper {
@@ -75,34 +77,64 @@ model ColonyComment {
   content     String
 }
 
+model PublicComment {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  author      User     @relation(fields: [authorId], references: [id])
+  authorId    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  content     String
+  news        News?    @relation(fields: [newsId], references: [id])
+  newsId      String?
+  event       Event?   @relation(fields: [eventId], references: [id])
+  eventId     String?
+}
+
 model News {
-  id            String      @id @default(cuid())
+  id            String          @id @default(cuid())
   title         String
   content       String
-  hasPriority   Boolean     @default(false)
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @default(now())
-  association   Association @relation(fields: [associationId], references: [id])
+  hasPriority   Boolean         @default(false)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @default(now())
+  association   Association     @relation(fields: [associationId], references: [id])
   associationId String
-  author        User        @relation(fields: [authorId], references: [id])
+  author        User            @relation(fields: [authorId], references: [id])
   authorId      String
+  comments      PublicComment[]
+}
+
+model Event {
+  id            String          @id @default(cuid())
+  title         String
+  content       String
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @default(now())
+  association   Association     @relation(fields: [associationId], references: [id])
+  associationId String
+  author        User            @relation(fields: [authorId], references: [id])
+  authorId      String
+  comments      PublicComment[]
 }
 
 model Association {
-  id                String              @id @default(cuid())
-  name              String
-  description       String
-  location          String
-  createdAt         DateTime            @default(now())
-  updatedAt         DateTime            @default(now())
-  AssociationMember AssociationMember[]
-  News              News[]
+  id                 String              @id @default(cuid())
+  name               String
+  description        String
+  location           String
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @default(now())
+  associationMembers AssociationMember[]
+  news               News[]
+  events             Event[]
 }
 
 model AssociationMember {
   association   Association @relation(fields: [associationId], references: [id])
   associationId String
-  User          User        @relation(fields: [userId], references: [id])
+  user          User        @relation(fields: [userId], references: [id])
   userId        String
   isAdmin       Boolean     @default(false)
 
