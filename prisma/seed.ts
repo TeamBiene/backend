@@ -103,6 +103,16 @@ async function main() {
     },
   });
 
+  await prisma.news.create({
+    data: {
+      id: "cl68dvp43000009ld1zmu7tah",
+      title: "Krankheit",
+      content: "Eine zweite News",
+      associationId,
+      authorId: userId,
+    },
+  });
+
   // Create news comment
   await prisma.publicComment.create({
     data: {
