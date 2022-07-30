@@ -27,7 +27,7 @@ router.get(
         }
 
         // Get data
-        const chatMsg = await prisma.chatMsg.findMany({
+        const chatMsg = await prisma.chatMessage.findMany({
             where: {
                 authorId: userId,
                 receiverId: fromUserId,
@@ -61,7 +61,7 @@ router.post(
             return void res.status(400).json({ error: InvalidArgumentError.message });
         }
         // Save data
-        const chatMsg = await prisma.chatMsg.create({
+        const chatMsg = await prisma.chatMessage.create({
             data: req.body
         });
         res.json({ status: "OK" });
