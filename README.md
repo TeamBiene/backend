@@ -48,6 +48,24 @@ authorization header -> for all calls
 | ------ | -------------- | ------------------- |
 | POST   | /news/{newsId} | Upload new comment. |
 
+### Events - [x]
+
+| Method | URL                                | Description        |
+| ------ | ---------------------------------- | ------------------ |
+| GET    | /event?association={associationId} | Return all events. |
+
+| Method | URL    | Description            |
+| ------ | ------ | ---------------------- |
+| POST   | /event | Upload new news entry. |
+
+| Method | URL             | Description                                 |
+| ------ | --------------- | ------------------------------------------- |
+| GET    | /event/{newsId} | Return specific event item. (with comments) |
+
+| Method | URL             | Description         |
+| ------ | --------------- | ------------------- |
+| POST   | /event/{newsId} | Upload new comment. |
+
 ### Account -> feature creep
 
 | Method | URL      | Description                         |

@@ -5,6 +5,7 @@ import ColonyController from "./controllers/Colony";
 import MapController from "./controllers/Map";
 import ChatController from "./controllers/Chat";
 import NewsController from "./controllers/News";
+import EventsController from "./controllers/Events";
 import AssociationController from "./controllers/Association";
 import UserController from "./controllers/User";
 
@@ -20,6 +21,7 @@ app.use("/colony", ColonyController);
 app.use("/map", MapController);
 app.use("/chat", ChatController);
 app.use("/news", NewsController);
+app.use("/event", EventsController);
 app.use("/association", AssociationController);
 app.use("/user", UserController);
 
