@@ -25,4 +25,4 @@ jobs:
           git pull
           npm install
           npx prisma db push
-          sudo systemctl restart backend
+          echo "${{ secrets.PASSWORD }}" | sudo -S systemctl restart backend
