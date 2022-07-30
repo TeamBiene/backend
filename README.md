@@ -64,7 +64,7 @@ authorization header -> for all calls
 | ------ | ---------------------------- | --------------------- |
 | POST   | /chat/{userId}?from={userId} | Send message to user. |
 
-### Assosiation
+### Association
 
 | Method | URL          | Description               |
 | ------ | ------------ | ------------------------- |
