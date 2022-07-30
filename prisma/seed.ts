@@ -12,24 +12,28 @@ async function main() {
   // Create breeds
   const { id: breedId } = await prisma.breed.create({
     data: {
+      id: "cl681mbw7000009mi1pcf0pr4",
       name: "Carnica",
     },
   });
 
   await prisma.breed.create({
     data: {
+      id: "cl681mlta000109mi4ck29cwr",
       name: "Kaukasische Biene",
     },
   });
 
   await prisma.breed.create({
     data: {
+      id: "cl681mvrg000209mid9c70njo",
       name: "Dunkle Biene",
     },
   });
 
   await prisma.breed.create({
     data: {
+      id: "cl681mzb3000309mi3kedhhus",
       name: "Italienische Biene",
     },
   });
@@ -37,6 +41,7 @@ async function main() {
   // Create user
   const { id: userId } = await prisma.user.create({
     data: {
+      id: "cl681nati000409mi1oyxbfzt",
       name: "John Doe",
       passwordHash: "123456",
       email: "john@gmail.com",
