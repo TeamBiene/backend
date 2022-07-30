@@ -1,6 +1,6 @@
 # REST API
 
-authorisation header -> for all calls
+authorization header -> for all calls
 
 ## Controllers
 
@@ -21,18 +21,20 @@ authorisation header -> for all calls
 | GET    | /map?startLatitude=0&startLongitude=0&stopLatitude=0&stopLongitude=0 | Returns all colonies in the coordinates range. |
 
 ### User
+
 | Method | URL            | Description         |
 | ------ | -------------- | ------------------- |
 | GET    | /user/{userId} | Returns user by id. |
 
 | Method | URL                               | Description       |
 | ------ | --------------------------------- | ----------------- |
-| GET    | /user?assosiation={assosiationId} | Return all users. |
+| GET    | /user?association={associationId} | Return all users. |
 
 ### News
-| Method | URL   | Description      |
-| ------ | ----- | ---------------- |
-| GET    | /news | Return all news. |
+
+| Method | URL                               | Description      |
+| ------ | --------------------------------- | ---------------- |
+| GET    | /news?association={associationId} | Return all news. |
 
 | Method | URL   | Description            |
 | ------ | ----- | ---------------------- |
@@ -46,15 +48,14 @@ authorisation header -> for all calls
 | ------ | -------------- | ------------------- |
 | POST   | /news/{newsId} | Upload new comment. |
 
-
-
 ### Account -> feature creep
-| Method | URL      | Description           |
-| ------ | -------- | --------------------- |
-| GET    | /account | Return account infos. |
 
+| Method | URL      | Description                         |
+| ------ | -------- | ----------------------------------- |
+| GET    | /account | Return infos about current account. |
 
 ### Chat
+
 | Method | URL                                  | Description                |
 | ------ | ------------------------------------ | -------------------------- |
 | GET    | /chat/{userId}?since={unixTimestamp} | Return messages with user. |
@@ -64,6 +65,7 @@ authorisation header -> for all calls
 | POST   | /chat/{userId}?from={userId} | Send message to user. |
 
 ### Assosiation
+
 | Method | URL          | Description               |
 | ------ | ------------ | ------------------------- |
-| GET    | /assosiation | Returns all assosiations. |
+| GET    | /association | Returns all associations. |

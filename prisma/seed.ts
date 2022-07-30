@@ -6,7 +6,12 @@ async function main() {
   await prisma.colonyComment.deleteMany();
   await prisma.colony.deleteMany();
   await prisma.beekeeper.deleteMany();
+  await prisma.publicComment.deleteMany();
+  await prisma.news.deleteMany();
+  await prisma.association.deleteMany();
+  await prisma.associationMember.deleteMany();
   await prisma.user.deleteMany();
+  await prisma.association.deleteMany();
   await prisma.breed.deleteMany();
 
   // Create breeds
@@ -38,6 +43,16 @@ async function main() {
     },
   });
 
+  // Create association
+  const { id: associationId } = await prisma.association.create({
+    data: {
+      id: "cl686rjxd000009mmabyld8us",
+      location: "Saaldorf",
+      name: "Saaldorf-Biene",
+      description: "Die angaschierte Bienen Community in Saaldorf.",
+    },
+  });
+
   // Create user
   const { id: userId } = await prisma.user.create({
     data: {
@@ -45,6 +60,15 @@ async function main() {
       name: "John Doe",
       passwordHash: "123456",
       email: "john@gmail.com",
+    },
+  });
+
+  // Create association member
+  await prisma.associationMember.create({
+    data: {
+      associationId,
+      userId,
+      isAdmin: true,
     },
   });
 
@@ -65,6 +89,27 @@ async function main() {
       name: "Garten Volk",
       latitude: 48.215623,
       longitude: 16.3701806,
+    },
+  });
+
+  // Create news
+  const { id: newsId } = await prisma.news.create({
+    data: {
+      id: "cl681njqg000509mi1oyxbfzt",
+      title: "Krankheit",
+      content: "Die Bienen sind krank geworden! :(",
+      hasPriority: true,
+      associationId,
+      authorId: userId,
+    },
+  });
+
+  // Create news comment
+  await prisma.publicComment.create({
+    data: {
+      newsId,
+      authorId: userId,
+      content: "Oh nein, gute Besserung!",
     },
   });
 }

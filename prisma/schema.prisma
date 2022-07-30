@@ -24,6 +24,8 @@ model User {
   associationMembers AssociationMember[]
   events             Event[]
   publicComments     PublicComment[]
+  sentMessages       ChatMessage[]       @relation(name: "sentMessages")
+  receivedMessages   ChatMessage[]       @relation(name: "receivedMessages")
 }
 
 model Beekeeper {
@@ -78,30 +80,27 @@ model ColonyComment {
 }
 
 model PublicComment {
-  id          String   @id @default(cuid())
-  name        String
-  description String
-  author      User     @relation(fields: [authorId], references: [id])
-  authorId    String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @default(now())
-  content     String
-  news        News?    @relation(fields: [newsId], references: [id])
-  newsId      String?
-  event       Event?   @relation(fields: [eventId], references: [id])
-  eventId     String?
+  id        String   @id @default(cuid())
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  content   String
+  news      News?    @relation(fields: [newsId], references: [id])
+  newsId    String?
+  event     Event?   @relation(fields: [eventId], references: [id])
+  eventId   String?
 }
 
-model ChatMsg {
+model ChatMessage {
   id         String   @id @default(cuid())
-  author     String
+  author     User     @relation(name: "sentMessages", fields: [authorId], references: [id])
   authorId   String
-  receiver   String
+  receiver   User     @relation(name: "receivedMessages", fields: [receiverId], references: [id])
   receiverId String
   createdAt  DateTime @default(now())
   updatedAt  DateTime @default(now())
   content    String
-  userId     String
 }
 
 model News {
