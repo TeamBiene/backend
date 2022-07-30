@@ -4,6 +4,7 @@ import cors from "cors";
 import ColonyController from "./controllers/Colony";
 import MapController from "./controllers/Map";
 import ChatController from "./controllers/Chat";
+import NewsController from "./controllers/News";
 
 // Create express app
 const app = express();
@@ -16,6 +17,7 @@ app.use(cors());
 app.use("/colony", ColonyController);
 app.use("/map", MapController);
 app.use("/news", ChatController);
+app.use("/news", NewsController);
 
 // Start listening
 app.listen("3000", () => {
