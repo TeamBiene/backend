@@ -19,7 +19,7 @@ router.get(
     }
 
     // Get data
-    const colonies = await prisma.colony.findFirst({
+    const colonies = await prisma.colony.findMany({
       where: {
         beekeeperId,
       },

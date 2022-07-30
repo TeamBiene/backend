@@ -5,6 +5,9 @@
     "develop": "nodemon ./src/main.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TeamBiene/backend.git"
