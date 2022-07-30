@@ -4,7 +4,7 @@ authorization header -> for all calls
 
 ## Controllers
 
-### Colony - [ ]
+### Colony - [X]
 
 | Method | URL                   | Description                          |
 | ------ | --------------------- | ------------------------------------ |
