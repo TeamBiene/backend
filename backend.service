@@ -1,0 +1,12 @@
+[Unit]
+Description=Backend service for TeamBiene
+After=network.target
+
+[Service]
+User=qr-registration
+WorkingDirectory=/home/bee/backend
+ExecStart=/bin/bash -c 'npm run develop'
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
