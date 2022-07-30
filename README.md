@@ -4,7 +4,7 @@ authorization header -> for all calls
 
 ## Controllers
 
-### Colony
+### Colony - [ ]
 
 | Method | URL                   | Description                          |
 | ------ | --------------------- | ------------------------------------ |
@@ -14,13 +14,13 @@ authorization header -> for all calls
 | ------ | ------- | ---------------- |
 | POST   | /colony | Post new colony. |
 
-### Map
+### Map - [X]
 
 | Method | URL                                                                  | Description                                    |
 | ------ | -------------------------------------------------------------------- | ---------------------------------------------- |
 | GET    | /map?startLatitude=0&startLongitude=0&stopLatitude=0&stopLongitude=0 | Returns all colonies in the coordinates range. |
 
-### User
+### User - [ ]
 
 | Method | URL            | Description         |
 | ------ | -------------- | ------------------- |
@@ -30,7 +30,7 @@ authorization header -> for all calls
 | ------ | --------------------------------- | ----------------- |
 | GET    | /user?association={associationId} | Return all users. |
 
-### News
+### News - [ ]
 
 | Method | URL                               | Description      |
 | ------ | --------------------------------- | ---------------- |
@@ -48,13 +48,13 @@ authorization header -> for all calls
 | ------ | -------------- | ------------------- |
 | POST   | /news/{newsId} | Upload new comment. |
 
-### Account -> feature creep
+### Account -> feature creep 
 
 | Method | URL      | Description                         |
 | ------ | -------- | ----------------------------------- |
 | GET    | /account | Return infos about current account. |
 
-### Chat
+### Chat - [X]
 
 | Method | URL                                                | Description                |
 | ------ | -------------------------------------------------- | -------------------------- |
@@ -64,7 +64,7 @@ authorization header -> for all calls
 | ------ | ---------------------------- | --------------------- |
 | POST   | /chat/{userId}?from={userId} | Send message to user. |
 
-### Association
+### Association - [X]
 
 | Method | URL          | Description               |
 | ------ | ------------ | ------------------------- |
