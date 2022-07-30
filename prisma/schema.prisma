@@ -52,8 +52,8 @@ model Colony {
   count          Int
   flightRadius   Int
   colonyComments ColonyComment[]
-  beekeper       Beekeeper?      @relation(fields: [beekeperId], references: [userId])
-  beekeperId     String?
+  beekeeper      Beekeeper?      @relation(fields: [beekeeperId], references: [userId])
+  beekeeperId    String?
   breed          Breed           @relation(fields: [breedId], references: [id])
   breedId        String
 }
