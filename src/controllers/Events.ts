@@ -14,43 +14,44 @@ router.get("/", authorize(), async (req: Request, res: Response, next: NextFunct
     return void res.status(400).json({ error: InvalidArgumentError.message });
   }
 
-  // Get news from a certain association from db
-  const news = await prisma.news.findMany({
+  // Get event from a certain association from db
+  const event = await prisma.event.findMany({
     where: {
       associationId,
     },
   });
 
-  //return news
-  res.json(news);
+  //return event
+  res.json(event);
 });
 
-router.get("/:newsId", authorize(), async (req: Request, res: Response, next: NextFunction) => {
+router.get("/:eventId", authorize(), async (req: Request, res: Response, next: NextFunction) => {
   // Get parameters
-  const { newsId } = req.params;
+  const { eventId } = req.params;
 
-  //Get news by id and with comments from db
-  const news = await prisma.news.findMany({
+  //Get event by id and with comments from db
+  const event = await prisma.event.findMany({
     where: {
-      id: newsId,
+      id: eventId,
     }, include: { comments: true }
   });
 
-  //return news
-  res.json(news);
+  //return event
+  res.json(event);
 });
 
 router.post(
-  "/:newsId",
+  "/:eventId",
   authorize(),
   async (req: Request, res: Response, next: NextFunction) => {
     // Get parameters
-    const { newsId } = req.params;
+    const { eventId } = req.params;
 
     // Validate parameters
-    if (typeof newsId !== "string") {
+    if (typeof eventId !== "string") {
       return void res.status(400).json({ error: InvalidArgumentError.message });
     }
+
     // Save data
     const newComment = await prisma.publicComment.create({
       data: req.body
@@ -64,7 +65,7 @@ router.post(
   authorize(),
   async (req: Request, res: Response, next: NextFunction) => {
     // Save data
-    const newNewsEntry = await prisma.news.create({
+    const newNewsEntry = await prisma.event.create({
       data: req.body
     });
     res.json({ status: "OK" });
