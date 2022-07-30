@@ -1,0 +1,28 @@
+name: CI
+
+on: [push]
+
+jobs:
+  deploy:
+    if: ${{ github.ref_name == 'main' }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: deploy on production server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
+        proxy_host: ${{secrets.PROXY_HOST }}
+        proxy_username: ${{ secrets.PROXY_USERNAME }}
+        proxy_passphrase: ${{ secrets.PROXY_PASSPHRASE }}
+        proxy_key: ${{ secrets.PROXY_KEY }}
+        proxy_port: ${{ secrets.PROXY_PORT }}
+        script_stop: true
+        script: |
+          cd teambiene/backend
+          git pull
+          npm install
+          npx prisma db push
+          npm run develop
