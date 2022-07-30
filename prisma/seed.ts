@@ -8,7 +8,6 @@ async function main() {
   await prisma.beekeeper.deleteMany();
   await prisma.publicComment.deleteMany();
   await prisma.news.deleteMany();
-  await prisma.association.deleteMany();
   await prisma.associationMember.deleteMany();
   await prisma.user.deleteMany();
   await prisma.association.deleteMany();
