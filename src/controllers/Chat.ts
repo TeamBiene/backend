@@ -60,10 +60,11 @@ router.post(
         if (typeof fromUserId !== "string") {
             return void res.status(400).json({ error: InvalidArgumentError.message });
         }
-        // Get data
-        const chatMsg = await prisma.chatMsg.upsert({
-            req.body
+        // Save data
+        const chatMsg = await prisma.chatMsg.create({
+            data: req.body
         });
+        res.json({ status: "OK" });
     }
 );
 

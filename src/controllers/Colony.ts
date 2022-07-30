@@ -30,4 +30,16 @@ router.get(
   }
 );
 
+router.post(
+  "/",
+  authorize(),
+  async (req: Request, res: Response, next: NextFunction) => {
+    // Save field
+    const chatMsg = await prisma.colony.create({
+      data: req.body
+    });
+    res.json({ status: "OK" });
+  }
+);
+
 export default router;
