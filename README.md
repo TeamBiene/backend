@@ -20,7 +20,7 @@ authorization header -> for all calls
 | ------ | -------------------------------------------------------------------- | ---------------------------------------------- |
 | GET    | /map?startLatitude=0&startLongitude=0&stopLatitude=0&stopLongitude=0 | Returns all colonies in the coordinates range. |
 
-### User - [ ]
+### User - [X]
 
 | Method | URL            | Description         |
 | ------ | -------------- | ------------------- |
@@ -48,7 +48,7 @@ authorization header -> for all calls
 | ------ | -------------- | ------------------- |
 | POST   | /news/{newsId} | Upload new comment. |
 
-### Account -> feature creep 
+### Account -> feature creep
 
 | Method | URL      | Description                         |
 | ------ | -------- | ----------------------------------- |
