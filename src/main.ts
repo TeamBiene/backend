@@ -6,6 +6,7 @@ import MapController from "./controllers/Map";
 import ChatController from "./controllers/Chat";
 import NewsController from "./controllers/News";
 import AssociationController from "./controllers/Association";
+import UserController from "./controllers/User";
 
 // Create express app
 const app = express();
@@ -20,6 +21,7 @@ app.use("/map", MapController);
 app.use("/chat", ChatController);
 app.use("/news", NewsController);
 app.use("/association", AssociationController);
+app.use("/user", UserController);
 
 // Start listening
 app.listen("3000", () => {
