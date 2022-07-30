@@ -16,7 +16,7 @@ app.use(cors());
 // Register controllers
 app.use("/colony", ColonyController);
 app.use("/map", MapController);
-app.use("/news", ChatController);
+app.use("/chat", ChatController);
 app.use("/news", NewsController);
 
 // Start listening
