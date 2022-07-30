@@ -19,12 +19,21 @@ router.get(
         }
 
         //Query params
-        cons
+        const { from: fromUserId, since: sinceTimestamp } = req.query;
+
+        if (typeof fromUserId !== "string" ||
+            typeof sinceTimestamp !== "string") {
+            return void res.status(400).json({ error: InvalidArgumentError.message });
+        }
 
         // Get data
         const chatMsg = await prisma.chatMsg.findMany({
             where: {
-                id: userId,
+                authorId: userId,
+                receiverId: fromUserId,
+                createdAt: {
+                    lte: sinceTimestamp,
+                },
             }
         });
 
@@ -33,39 +42,28 @@ router.get(
     }
 );
 
-router.get(
-    "/:newsId",
+router.post(
+    "/:userId",
     authorize(),
     async (req: Request, res: Response, next: NextFunction) => {
         // Get parameters
-        const { newsId } = req.params;
+        const { userId } = req.params;
 
         // Validate parameters
-        if (typeof newsId !== "string") {
+        if (typeof userId !== "string") {
             return void res.status(400).json({ error: InvalidArgumentError.message });
         }
 
+        //Query params
+        const { from: fromUserId } = req.query;
+
+        if (typeof fromUserId !== "string") {
+            return void res.status(400).json({ error: InvalidArgumentError.message });
+        }
         // Get data
-        const news = await prisma.news.findMany({
-            where: {
-                id: newsId,
-            }, include: { comments: true }
+        const chatMsg = await prisma.chatMsg.upsert({
+            req.body
         });
-
-        // Return colonies or empty array
-        res.json(news ?? []);
-    }
-);
-
-router.post(
-    "/",
-    authorize(),
-    async (req: Request, res: Response, next: NextFunction) => {
-        // Get data
-        const news = await prisma.news.findMany({});
-
-        // Return colonies or empty array
-        res.json(news ?? []);
     }
 );
 
