@@ -26,7 +26,7 @@ router.get(
     });
 
     // Return colonies or empty array
-    res.json(colonies ?? []);
+    res.json(colonies);
   }
 );
 
