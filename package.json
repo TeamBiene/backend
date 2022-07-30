@@ -1,0 +1,20 @@
+{
+  "name": "@bee/backend",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TeamBiene/backend.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TeamBiene/backend/issues"
+  },
+  "homepage": "https://github.com/TeamBiene/backend#readme",
+  "dependencies": {
+    "@prisma/client": "^4.1.1",
+    "prisma": "^4.1.1"
+  }
+}

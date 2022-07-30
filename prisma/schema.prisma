@@ -1,0 +1,110 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id                String              @id @default(cuid())
+  name              String
+  email             String
+  passwordHash      String
+  profilePhoto      String?
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @default(now())
+  beekeeper         Beekeeper?
+  farmer            Farmer?
+  prostedNews       News[]
+  AssociationMember AssociationMember[]
+}
+
+model Beekeeper {
+  name      String
+  email     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String   @id
+  colonies  Colony[]
+}
+
+model Farmer {
+  name      String
+  email     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String   @id
+}
+
+model Colony {
+  id             String          @id @default(cuid())
+  name           String
+  description    String
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @default(now())
+  count          Int
+  flightRadius   Int
+  colonyComments ColonyComment[]
+  beekeper       Beekeeper?      @relation(fields: [beekeperId], references: [userId])
+  beekeperId     String?
+  breed          Breed           @relation(fields: [breedId], references: [id])
+  breedId        String
+}
+
+model Breed {
+  id       String   @id @default(cuid())
+  name     String   @unique
+  colonies Colony[]
+}
+
+model ColonyComment {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  colony      Colony   @relation(fields: [colonyId], references: [id])
+  colonyId    String
+  content     String
+}
+
+model News {
+  id            String      @id @default(cuid())
+  title         String
+  content       String
+  hasPriority   Boolean     @default(false)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @default(now())
+  association   Association @relation(fields: [associationId], references: [id])
+  associationId String
+  author        User        @relation(fields: [authorId], references: [id])
+  authorId      String
+}
+
+model Association {
+  id                String              @id @default(cuid())
+  name              String
+  description       String
+  location          String
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @default(now())
+  AssociationMember AssociationMember[]
+  News              News[]
+}
+
+model AssociationMember {
+  association   Association @relation(fields: [associationId], references: [id])
+  associationId String
+  User          User        @relation(fields: [userId], references: [id])
+  userId        String
+  isAdmin       Boolean     @default(false)
+
+  @@id([associationId, userId])
+}
