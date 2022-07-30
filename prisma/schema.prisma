@@ -56,8 +56,8 @@ model Colony {
   beekeeperId    String?
   breed          Breed           @relation(fields: [breedId], references: [id])
   breedId        String
-  longitude      Float
   latitude       Float
+  longitude      Float
 }
 
 model Breed {

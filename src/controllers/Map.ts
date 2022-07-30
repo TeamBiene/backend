@@ -13,33 +13,49 @@ router.get(
     // Get parameters
     const {
       startLatitude: startLatitudeRaw,
-      startLongitude: startLongitudeRaw,
       stopLatitude: stopLatitudeRaw,
+      startLongitude: startLongitudeRaw,
       stopLongitude: stopLongitudeRaw,
     } = req.query;
 
     // Validate parameters
     if (
       typeof startLatitudeRaw !== "string" ||
-      typeof startLongitudeRaw !== "string" ||
       typeof stopLatitudeRaw !== "string" ||
+      typeof startLongitudeRaw !== "string" ||
       typeof stopLongitudeRaw !== "string"
     ) {
       return void res.status(400).json({ error: InvalidArgumentError.message });
     }
 
+    let startLatitude: number | null;
+    let stopLatitude: number | null;
+    let startLongitude: number | null;
+    let stopLongitude: number | null;
+
     // Parse parameters
     try {
-      const startLatitude = parseFloat(startLatitudeRaw);
-      const startLongitude = parseFloat(startLongitudeRaw);
-      const stopLatitude = parseFloat(stopLatitudeRaw);
-      const stopLongitude = parseFloat(stopLongitudeRaw);
+      startLatitude = parseFloat(startLatitudeRaw);
+      stopLatitude = parseFloat(stopLatitudeRaw);
+      startLongitude = parseFloat(startLongitudeRaw);
+      stopLongitude = parseFloat(stopLongitudeRaw);
     } catch (e) {
       return void res.status(400).json({ error: InvalidArgumentError.message });
     }
 
     // Get data
-    const colonies = await prisma.colony.findMany({});
+    const colonies = await prisma.colony.findMany({
+      where: {
+        latitude: {
+          lte: stopLatitude,
+          gte: startLatitude,
+        },
+        longitude: {
+          lte: stopLongitude,
+          gte: startLongitude,
+        },
+      },
+    });
 
     // Return colonies or empty array
     res.json(colonies ?? []);
