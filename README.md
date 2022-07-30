@@ -56,9 +56,9 @@ authorization header -> for all calls
 
 ### Chat
 
-| Method | URL                                  | Description                |
-| ------ | ------------------------------------ | -------------------------- |
-| GET    | /chat/{userId}?since={unixTimestamp} | Return messages with user. |
+| Method | URL                                                | Description                |
+| ------ | -------------------------------------------------- | -------------------------- |
+| GET    | /chat/{userId}?since={unixTimestamp}&from={userId} | Return messages with user. |
 
 | Method | URL                          | Description           |
 | ------ | ---------------------------- | --------------------- |
