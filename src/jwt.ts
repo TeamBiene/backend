@@ -52,7 +52,7 @@ export function encodeSession(secretKey: string, partialSession: PartialSession)
     // Determine when the token should expire
     const issued = Date.now();
     const fifteenMinutesInMs = 15 * 60 * 1000;
-    const expires = issued + fifteenMinutesInMs;
+    const expires = issued + fifteenMinutesInMs * 30;
     const session: Session = {
         ...partialSession,
         issued: issued,
