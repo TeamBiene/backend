@@ -74,13 +74,17 @@ authorization header -> for all calls
 
 ### Chat - [x]
 
-| Method | URL                                                | Description                |
-| ------ | -------------------------------------------------- | -------------------------- |
-| GET    | /chat/{userId}?since={unixTimestamp}&from={userId} | Return messages with user. |
+| Method | URL                                       | Description                |
+| ------ | ----------------------------------------- | -------------------------- |
+| GET    | /chat?since={unixTimestamp}&from={userId} | Return messages with user. |
 
-| Method | URL                          | Description           |
-| ------ | ---------------------------- | --------------------- |
-| POST   | /chat/{userId}?from={userId} | Send message to user. |
+| Method | URL                 | Description           |
+| ------ | ------------------- | --------------------- |
+| POST   | /chat?from={userId} | Send message to user. |
+
+| Method | URL   | Description           |
+| ------ | ----- | --------------------- |
+| GET    | /chat | Get all active chats. |
 
 ### Association - [x]
 
