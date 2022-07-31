@@ -31,7 +31,7 @@ router.get(
                 authorId: userId,
                 receiverId: fromUserId,
                 createdAt: {
-                    lte: sinceTimestamp,
+                    lte: new Date(parseInt(sinceTimestamp)),
                 },
             }
         });
@@ -68,7 +68,7 @@ router.get(
                 authorId: userId,
                 receiverId: fromUserId,
                 createdAt: {
-                    lte: sinceTimestamp,
+                    lte: new Date(parseInt(sinceTimestamp)),
                 },
             }
         });

@@ -78,6 +78,8 @@ authorization header -> for all calls
 | ------ | ----------------------------------------- | -------------------------- |
 | GET    | /chat?since={unixTimestamp}&from={userId} | Return messages with user. |
 
+#### (since is millis) User id is extracted from jwt.
+
 | Method | URL                 | Description           |
 | ------ | ------------------- | --------------------- |
 | POST   | /chat?from={userId} | Send message to user. |
