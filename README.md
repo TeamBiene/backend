@@ -1,10 +1,17 @@
 # REST API
 
-authorization header -> for all calls
+authorization header (X-JWT-Token header) -> for all calls
+
+## How to run
+
+`npm install`  
+`npx prisma db push`   
+`npx prisma db seed`  
+`npm run dev` or adapt and use backend.service
 
 ## Controllers
 
-### Colony - [x]
+### Colony
 
 | Method | URL                   | Description                          |
 | ------ | --------------------- | ------------------------------------ |
@@ -14,13 +21,13 @@ authorization header -> for all calls
 | ------ | ------- | ---------------- |
 | POST   | /colony | Post new colony. |
 
-### Map - [x]
+### Map
 
 | Method | URL                                                                  | Description                                    |
 | ------ | -------------------------------------------------------------------- | ---------------------------------------------- |
 | GET    | /map?startLatitude=0&startLongitude=0&stopLatitude=0&stopLongitude=0 | Returns all colonies in the coordinates range. |
 
-### User - [x]
+### User
 
 | Method | URL            | Description         |
 | ------ | -------------- | ------------------- |
@@ -30,7 +37,7 @@ authorization header -> for all calls
 | ------ | --------------------------------- | ----------------- |
 | GET    | /user?association={associationId} | Return all users. |
 
-### News - [x]
+### News
 
 | Method | URL                               | Description      |
 | ------ | --------------------------------- | ---------------- |
@@ -48,7 +55,7 @@ authorization header -> for all calls
 | ------ | -------------- | ------------------- |
 | POST   | /news/{newsId} | Upload new comment. |
 
-### Events - [x]
+### Events
 
 | Method | URL                                | Description        |
 | ------ | ---------------------------------- | ------------------ |
@@ -66,13 +73,7 @@ authorization header -> for all calls
 | ------ | --------------- | ------------------- |
 | POST   | /event/{newsId} | Upload new comment. |
 
-### Account -> feature creep
-
-| Method | URL      | Description                         |
-| ------ | -------- | ----------------------------------- |
-| GET    | /account | Return infos about current account. |
-
-### Chat - [x]
+### Chat
 
 | Method | URL                                       | Description                |
 | ------ | ----------------------------------------- | -------------------------- |
@@ -88,7 +89,7 @@ authorization header -> for all calls
 | ------ | ----- | --------------------- |
 | GET    | /chat | Get all active chats. |
 
-### Association - [x]
+### Association
 
 | Method | URL          | Description               |
 | ------ | ------------ | ------------------------- |
