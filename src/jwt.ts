@@ -11,13 +11,7 @@ export interface Session {
     id: String;
     dateCreated: number;
     username: string;
-    /**
-     * Timestamp indicating when the session was created, in Unix milliseconds.
-     */
     issued: number;
-    /**
-     * Timestamp indicating when the session should expire, in Unix milliseconds.
-     */
     expires: number;
 }
 
@@ -52,7 +46,7 @@ export function encodeSession(secretKey: string, partialSession: PartialSession)
     // Determine when the token should expire
     const issued = Date.now();
     const fifteenMinutesInMs = 15 * 60 * 1000;
-    const expires = issued + fifteenMinutesInMs * 30;
+    const expires = issued + fifteenMinutesInMs * 30; // 30 * 15min -> 7h 30min
     const session: Session = {
         ...partialSession,
         issued: issued,
@@ -76,7 +70,6 @@ export function decodeSession(secretKey: string, tokenString: string): DecodeRes
     try {
         result = decode(tokenString, secretKey, false, algorithm);
     } catch (e: any) {
-
 
         // These error strings can be found here:
         // https://github.com/hokaccha/node-jwt-simple/blob/c58bfe5e5bb049015fcd55be5fc1b2d5c652dbcd/lib/jwt.js
