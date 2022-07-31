@@ -30,15 +30,15 @@ export interface EncodeResult {
 
 export type DecodeResult =
   | {
-      type: "valid";
-      session: Session;
-    }
+    type: "valid";
+    session: Session;
+  }
   | {
-      type: "integrity-error";
-    }
+    type: "integrity-error";
+  }
   | {
-      type: "invalid-token";
-    };
+    type: "invalid-token";
+  };
 
 export type ExpirationStatus = "expired" | "active" | "grace";
 
@@ -152,7 +152,17 @@ export function requireJwtMiddleware(
     return;
   }
 
-  const decodedSession: DecodeResult = decodeSession(config.secret, header);
+  require("dotenv").config();
+
+  let secret = process.env.SECRET;
+
+  if (
+    typeof secret !== "string"
+  ) {
+    return;
+  }
+
+  const decodedSession: DecodeResult = decodeSession(secret, header);
 
   if (
     decodedSession.type === "integrity-error" ||
@@ -180,7 +190,7 @@ export function requireJwtMiddleware(
   if (expiration === "grace") {
     // Automatically renew the session and send it back with the response
     const { token, expires, issued } = encodeSession(
-      config.secret,
+      secret,
       decodedSession.session
     );
     session = {
@@ -210,7 +220,15 @@ export function getIdFromRequest(request: Request): String {
   if (!header) {
     return "";
   }
-  const decodedSession: DecodeResult = decodeSession(config.secret, header);
+
+  let secret = process.env.SECRET;
+
+  if (
+    typeof secret !== "string"
+  ) {
+    return "";
+  }
+  const decodedSession: DecodeResult = decodeSession(secret, header);
 
   if (
     decodedSession.type === "integrity-error" ||

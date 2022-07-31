@@ -31,7 +31,16 @@ app.use("/user", UserController);
 app.get("/debuglogin", (req: Request, res: Response) => {
   // This route is unprotected, anybody can call it
   // TODO: Validate username/password
-  const session = encodeSession("nBNAaw9317WqV9kM4bWHG47ZJcO", {
+  let secret = process.env.SECRET;
+
+  if (
+    typeof secret !== "string"
+  ) {
+    res.status(400).json();
+    return;
+  }
+
+  const session = encodeSession(secret, {
     id: "cl681nati000409mi1oyxbfzt",
     username: "User 1",
     dateCreated: Date.now()
