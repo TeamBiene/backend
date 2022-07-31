@@ -174,3 +174,19 @@ export function requireJwtMiddleware(request: Request, response: Response, next:
     // Request has a valid or renewed session. Call next to continue to the authenticated route handler
     next();
 }
+export function getIdFromRequest(request: Request): String {
+    const requestHeader = "X-JWT-Token";
+    const header = request.header(requestHeader);
+
+    if (!header) {
+        return "";
+    }
+    const decodedSession: DecodeResult = decodeSession("nBNAaw9317WqV9kM4bWHG47ZJcO", header);
+
+    if (decodedSession.type === "integrity-error" || decodedSession.type === "invalid-token") {
+        return "";
+    }
+    return decodedSession.session.id;
+}
+
+
