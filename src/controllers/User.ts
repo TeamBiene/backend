@@ -2,10 +2,11 @@ import { User } from "@prisma/client";
 import { Router, Request, Response, NextFunction } from "express";
 import { InvalidArgumentError, NotFoundError } from "../errors";
 import prisma from "../prisma";
+import authorize from "../middleware/auth";
 
 const router = Router();
 
-router.get("/", async (req: Request, res: Response, next: NextFunction) => {
+router.get("/", authorize(), async (req: Request, res: Response, next: NextFunction) => {
   // Get parameters
   const { association: associationId } = req.query;
 
@@ -28,7 +29,7 @@ router.get("/", async (req: Request, res: Response, next: NextFunction) => {
   res.json(users);
 });
 
-router.get("/:id", async (req: Request, res: Response, next: NextFunction) => {
+router.get("/:id", authorize(), async (req: Request, res: Response, next: NextFunction) => {
   // Get parameters
   const { id } = req.params;
 

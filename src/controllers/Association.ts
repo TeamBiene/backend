@@ -8,7 +8,6 @@ const router = Router();
 
 router.get(
     "/",
-    authorize(),
     async (req: Request, res: Response, next: NextFunction) => {
         // Get data
         const associations = await prisma.association.findMany({
