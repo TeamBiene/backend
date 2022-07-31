@@ -9,6 +9,11 @@ authorization header (X-JWT-Token header) -> for all calls
 `npx prisma db seed`  
 `npm run dev` or adapt and use backend.service
 
+## ERD
+
+<img src="https://raw.githubusercontent.com/TeamBiene/backend/main/.github/workflows/erd.svg" width="100%" height="500">
+
+
 ## Controllers
 
 ### Colony
